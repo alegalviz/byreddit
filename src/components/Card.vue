@@ -7,6 +7,11 @@
   >
     <span :class="`pill ${postRead}`"></span>
     <h5>{{ post.title }}</h5>
+    <v-card-text>
+      Comments: {{ post.num_comments }} comments <br />
+      Author: <strong>{{ post.author }}</strong> <br />
+      {{ formattedDate }}
+    </v-card-text>
     <v-card-actions>
       <v-btn :x-small="true" color="blue" text>Show the preview</v-btn>
       <v-btn :x-small="true" text>Dismiss</v-btn>
@@ -15,6 +20,7 @@
   </div>
 </template>
 <script>
+import { format } from 'timeago.js'
 export default {
   props:{
     post: {
@@ -25,6 +31,9 @@ export default {
   computed: {
     postRead () {
       return this.post.read ? 'read' : ''
+    },
+    formattedDate () {
+      return format(new Date(this.post.created_utc * 1000))
     }
   }
 }
