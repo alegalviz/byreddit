@@ -1,2 +1,9 @@
 # byreddit
-App to fetch and present data from Reddit
+App to fetch and present data for reddit
+
+# URL
+not uploaded yet
+
+# Decisions
+
+1. Create the base code with Vue CLI v3.11.0 using Node v11.5.0 (npm v6.4.1) (nvm)
