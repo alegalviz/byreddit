@@ -12,3 +12,4 @@ not uploaded yet
 4. Left column to show the posts, main column to show the details.
 5. Service to fetch some store work 
 6. Fill the post in the left sidebar
+7. We need to access and mutate some posts to mark as read, so I changed structure of posts state

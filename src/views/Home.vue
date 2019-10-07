@@ -4,8 +4,8 @@
       v-model="drawer"
       app
     >
-      <Card v-for="post in getPosts" :post="getPostData(post)" v-bind:key="post.id"></Card>
-      <v-btn class="dismiss-all" text>Dismiss All</v-btn>
+      <Card v-for="post in getPosts" :post="post" v-bind:key="post.id"></Card>
+      <v-btn class="dismiss-all" text @click="dismissAll()">Dismiss All</v-btn>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -58,8 +58,8 @@ export default {
   },
   methods: {
     ...mapActions(['fetchPosts']),
-    getPostData (post) {
-      return post.data
+    dismissAll () {
+      return false
     }
   },
   async mounted () {

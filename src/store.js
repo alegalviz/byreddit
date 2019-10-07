@@ -12,13 +12,20 @@ export default new Vuex.Store({
   },
   mutations: {
     setPosts (state, posts) {
-      state.posts = state.posts.concat(posts)
+      const reducedPosts = posts.reduce( (acc, curr) => {
+        acc[curr.data.id] = curr.data
+        return acc
+      }, {})
+      state.posts = Object.assign(reducedPosts, state.posts)
     },
     setAfter (state, after) {
       state.after = after
     },
     setBefore (state, before) {
       state.before = before
+    },
+    setPostAsRead(state, postId) {
+      state.posts[postId].read = true
     }
   },
   actions: {
@@ -27,6 +34,6 @@ export default new Vuex.Store({
       commit('setPosts', response.data.children)
       commit('setAfter', response.data.after)
       commit('setBefore', response.data.before)
-    }
+    },
   },
 });
