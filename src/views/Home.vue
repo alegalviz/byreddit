@@ -1,21 +1,11 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="home">
     <v-navigation-drawer
       v-model="drawer"
       app
     >
-      <v-card
-        max-width="344"
-        class="mx-auto"
-        v-for="i in 10"
-        v-bind:key="i"
-      >
-        <v-card-title>I'm a title</v-card-title>
-        <v-card-text>I'm card text</v-card-text>
-        <v-card-actions>
-          <v-btn text>Click</v-btn>
-        </v-card-actions>
-      </v-card>
+      <Card v-for="post in getPosts" :post="getPostData(post)" v-bind:key="post.id"></Card>
+      <v-btn class="dismiss-all" text>Dismiss All</v-btn>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -52,13 +42,25 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import Card from '../components/Card'
 export default {
+  components: {
+    Card
+  },
   data: () => ({
     drawer: null
   }),
+  computed: {
+    ...mapState({
+      getPosts: (state) => state.posts
+    })
+  },
   methods: {
-    ...mapActions(['fetchPosts'])
+    ...mapActions(['fetchPosts']),
+    getPostData (post) {
+      return post.data
+    }
   },
   async mounted () {
     await this.fetchPosts()

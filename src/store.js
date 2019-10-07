@@ -12,7 +12,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setPosts (state, posts) {
-      state.posts.concat(posts)
+      state.posts = state.posts.concat(posts)
     },
     setAfter (state, after) {
       state.after = after

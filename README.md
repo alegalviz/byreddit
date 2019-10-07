@@ -10,4 +10,5 @@ not uploaded yet
 2. Add Vuetify as prototyping development framework
 3. Use some basic layout of Vuetify.
 4. Left column to show the posts, main column to show the details.
-5. Service to fetch some store work (pause to eat)
+5. Service to fetch some store work 
+6. Fill the post in the left sidebar
