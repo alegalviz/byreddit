@@ -7,3 +7,4 @@ not uploaded yet
 # Decisions
 
 1. Create the base code with Vue CLI v3.11.0 using Node v11.5.0 (npm v6.4.1) (nvm)
+2. Add Vuetify as prototyping development framework
