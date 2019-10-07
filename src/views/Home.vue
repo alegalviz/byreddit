@@ -4,7 +4,12 @@
       v-model="drawer"
       app
     >
-      <Card v-for="post in getPosts" :post="post" v-bind:key="post.id"></Card>
+      <Card
+        v-for="post in getPosts"
+        :post="post"
+        v-bind:key="post.id"
+        @select-post="selectPost(post)"
+      />
       <v-btn class="dismiss-all" text @click="dismissAll()">Dismiss All</v-btn>
     </v-navigation-drawer>
 
@@ -20,15 +25,15 @@
     <v-content>
       <v-container
         class="fill-height"
-        fluid
       >
         <v-row
-          align="center"
-          justify="center"
+          align="start"
+          justify="start"
+          cols="12"
         >
-          <v-col class="text-center">
-            
-          </v-col>
+          <PostViewer
+            :post="currentPost"
+          />
         </v-row>
       </v-container>
     </v-content>
@@ -44,12 +49,15 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import Card from '../components/Card'
+import PostViewer from '../components/PostViewer'
 export default {
   components: {
-    Card
+    Card,
+    PostViewer
   },
   data: () => ({
-    drawer: null
+    drawer: null,
+    currentPost: {}
   }),
   computed: {
     ...mapState({
@@ -60,6 +68,9 @@ export default {
     ...mapActions(['fetchPosts']),
     dismissAll () {
       return false
+    },
+    selectPost (post) {
+      this.currentPost = post
     }
   },
   async mounted () {

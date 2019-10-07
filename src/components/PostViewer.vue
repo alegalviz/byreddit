@@ -4,23 +4,18 @@
       class="mx-auto"
       :flat="flat"
       :loading="loading"
-      :outlined="outlined"
-      :elevation="elevation"
-      :raised="raised"
       :width="width"
       :height="height"
     >
-      <v-img
+      <img
         v-if="post.thumbnail"
         class="white--text"
         height="200px"
-        :src="post.thumbnail"
+        :src="`${post.thumbnail}?id=${post.id}`"
       >
-        <v-card-title class="align-end fill-height">{{ post.title }}</v-card-title>
-      </v-img>
-      <v-card-title v-else>{{ post.title }}</v-card-title>
+      <v-card-title>{{ post.title }}</v-card-title>
 
-      <v-card-text>Link: <a :href="post.permalink" target="_blank">{{ post.permalink }}</a></v-card-text>
+      <v-card-text>Link: <a :href="`${baseImagURL}${post.permalink}`" target="_blank">{{ post.title }}</a></v-card-text>
       <v-card-text>Author: {{ post.author }}</v-card-text>
     </v-card>
   </div>
@@ -38,12 +33,15 @@ export default {
     media: true,
     loading: false,
     actions: true,
-    width: 500,
-    height: undefined,
+    width: 800,
+    height: 'auto',
   }),
   computed: {
     postRead () {
       return this.post.read ? 'read' : ''
+    },
+    baseImagURL () {
+      return 'https://www.reddit.com'
     }
   }
 }

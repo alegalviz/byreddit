@@ -4,6 +4,7 @@
     max-width="344"
     class="mx-auto"
     :hover="true"
+    @click.stop="$emit('select-post', post)"
   >
     <span :class="`pill ${postRead}`"></span>
     <h5>{{ post.title }}</h5>
