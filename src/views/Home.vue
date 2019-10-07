@@ -52,10 +52,16 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
   data: () => ({
     drawer: null
-  })
+  }),
+  methods: {
+    ...mapActions(['fetchPosts'])
+  },
+  async mounted () {
+    await this.fetchPosts()
+  }
 };
 </script>
