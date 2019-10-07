@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     postRead () {
-      return this.post.read ? 'read' : ''
+      return this.post.visited ? 'read' : ''
     },
     formattedDate () {
       return format(new Date(this.post.created_utc * 1000))

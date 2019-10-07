@@ -1,5 +1,5 @@
 <template>
-  <v-app id="home">
+  <div id="home">
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -32,6 +32,7 @@
           cols="12"
         >
           <PostViewer
+            v-if="currentPost"
             :post="currentPost"
           />
         </v-row>
@@ -43,7 +44,7 @@
     >
       <span class="white--text">&copy; 2019</span>
     </v-footer>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -57,7 +58,7 @@ export default {
   },
   data: () => ({
     drawer: null,
-    currentPost: {}
+    currentPost: null
   }),
   computed: {
     ...mapState({
@@ -65,11 +66,12 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['fetchPosts']),
+    ...mapActions(['fetchPosts', 'markPostAsRead']),
     dismissAll () {
       return false
     },
     selectPost (post) {
+      this.markPostAsRead(post)
       this.currentPost = post
     }
   },

@@ -6,6 +6,7 @@
       :loading="loading"
       :width="width"
       :height="height"
+      v-if="post"
     >
       <img
         v-if="post.thumbnail"
@@ -47,21 +48,11 @@ export default {
 }
 </script>
 <style scoped>
+.post-viewer {
+  margin: 15px 30px;
+}
 .v-card {
   padding: 30px 5px;
-  margin-bottom: 15px;
-}
-.pill {
-  background: #3f51b5;
-  display: block;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-}
-.read {
-  background: lightgrey;
+  margin: 30px;
 }
 </style>

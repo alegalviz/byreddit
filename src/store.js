@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.before = before
     },
     setPostAsRead(state, postId) {
-      state.posts[postId].read = true
+      state.posts[postId].visited = true
     }
   },
   actions: {
@@ -35,5 +35,8 @@ export default new Vuex.Store({
       commit('setAfter', response.data.after)
       commit('setBefore', response.data.before)
     },
+    markPostAsRead ({ commit }, post) {
+      commit('setPostAsRead', post.id)
+    }
   },
 });
