@@ -4,7 +4,6 @@
       class="mx-auto"
       :flat="flat"
       :loading="loading"
-      :width="width"
       :height="height"
       v-if="post"
     >
@@ -34,7 +33,6 @@ export default {
     media: true,
     loading: false,
     actions: true,
-    width: 800,
     height: 'auto',
   }),
   computed: {
