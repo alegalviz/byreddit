@@ -15,7 +15,7 @@
     </v-card-text>
     <v-card-actions>
       <v-btn :x-small="true" color="blue" text>Show the preview</v-btn>
-      <v-btn :x-small="true" text>Dismiss</v-btn>
+      <v-btn :x-small="true" text @click.stop="$emit('dismiss-post', post)">Dismiss</v-btn>
     </v-card-actions>
   </v-card>
   </div>

@@ -4,12 +4,15 @@
       v-model="drawer"
       app
     >
-      <Card
-        v-for="post in getPosts"
-        :post="post"
-        v-bind:key="post.id"
-        @select-post="selectPost(post)"
-      />
+      <transition-group name="list">
+        <Card
+          v-for="post in getPosts"
+          :post="post"
+          v-bind:key="post.id"
+          @select-post="selectPost(post)"
+          @dismiss-post="dismissPost(post)"
+        />
+      </transition-group>
       <v-btn class="dismiss-all" text @click="dismissAll()">Dismiss All</v-btn>
     </v-navigation-drawer>
 
@@ -48,7 +51,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Card from '../components/Card'
 import PostViewer from '../components/PostViewer'
 export default {
@@ -61,12 +64,10 @@ export default {
     currentPost: null
   }),
   computed: {
-    ...mapState({
-      getPosts: (state) => state.posts
-    })
+    ...mapGetters(['getPosts'])
   },
   methods: {
-    ...mapActions(['fetchPosts', 'markPostAsRead']),
+    ...mapActions(['fetchPosts', 'markPostAsRead', 'dismissPost']),
     dismissAll () {
       return false
     },
@@ -80,3 +81,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>

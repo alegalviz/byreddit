@@ -10,6 +10,11 @@ export default new Vuex.Store({
     after: "",
     before: ""
   },
+  getters: {
+    getPosts (state) {
+      return state.posts
+    }
+  },
   mutations: {
     setPosts (state, posts) {
       const reducedPosts = posts.reduce( (acc, curr) => {
@@ -26,6 +31,10 @@ export default new Vuex.Store({
     },
     setPostAsRead(state, postId) {
       state.posts[postId].visited = true
+    },
+    deletePost(state, postId) {
+      delete state.posts[postId]
+      state.posts = Object.assign({}, state.posts)
     }
   },
   actions: {
@@ -37,6 +46,11 @@ export default new Vuex.Store({
     },
     markPostAsRead ({ commit }, post) {
       commit('setPostAsRead', post.id)
+    },
+    dismissPost ({
+      commit
+    }, post) {
+      commit('deletePost', post.id)
     }
   },
 });
