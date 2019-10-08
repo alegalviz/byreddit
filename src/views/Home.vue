@@ -67,10 +67,7 @@ export default {
     ...mapGetters(['getPosts'])
   },
   methods: {
-    ...mapActions(['fetchPosts', 'markPostAsRead', 'dismissPost']),
-    dismissAll () {
-      return false
-    },
+    ...mapActions(['fetchPosts', 'markPostAsRead', 'dismissPost', 'dismissAll']),
     selectPost (post) {
       this.markPostAsRead(post)
       this.currentPost = post
@@ -82,6 +79,13 @@ export default {
 };
 </script>
 <style scoped>
+.dismiss-all {
+  position: fixed;
+  bottom: 0;
+  background: white;
+  text-align: center;
+  width: 100%;
+}
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }

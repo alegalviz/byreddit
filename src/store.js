@@ -35,6 +35,9 @@ export default new Vuex.Store({
     deletePost(state, postId) {
       delete state.posts[postId]
       state.posts = Object.assign({}, state.posts)
+    },
+    deleteAllPosts(state) {
+      state.posts = Object.assign({}, null)
     }
   },
   actions: {
@@ -51,6 +54,9 @@ export default new Vuex.Store({
       commit
     }, post) {
       commit('deletePost', post.id)
+    },
+    dismissAll ({ commit }) {
+      commit('deleteAllPosts')
     }
   },
 });
