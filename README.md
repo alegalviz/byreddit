@@ -2,7 +2,7 @@
 App to fetch and present data for reddit
 
 # URL
-not uploaded yet
+http://alegalviz.com.ar/deviget/
 
 # Decisions
 
