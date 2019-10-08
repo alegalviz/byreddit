@@ -13,7 +13,10 @@
           @dismiss-post="dismissPost(post)"
         />
       </transition-group>
-      <v-btn class="dismiss-all" text @click="dismissAll()">Dismiss All</v-btn>
+      <div>
+        <v-btn class="accent get-next" text @click="nextPosts()">More posts</v-btn>
+      </div>
+      <v-btn color="red" class="dismiss-all" text @click="dismissAll()">Dismiss All</v-btn>
     </v-navigation-drawer>
 
     <v-app-bar
@@ -67,7 +70,7 @@ export default {
     ...mapGetters(['getPosts'])
   },
   methods: {
-    ...mapActions(['fetchPosts', 'markPostAsRead', 'dismissPost', 'dismissAll']),
+    ...mapActions(['fetchPosts', 'markPostAsRead', 'dismissPost', 'dismissAll', 'nextPosts']),
     selectPost (post) {
       this.markPostAsRead(post)
       this.currentPost = post
@@ -92,5 +95,9 @@ export default {
 .list-enter, .list-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+.get-next {
+  margin-bottom: 40px;
+  width: 100%;
 }
 </style>

@@ -21,7 +21,7 @@ export default new Vuex.Store({
         acc[curr.data.id] = curr.data
         return acc
       }, {})
-      state.posts = Object.assign(reducedPosts, state.posts)
+      state.posts = Object.assign({}, state.posts, reducedPosts)
     },
     setAfter (state, after) {
       state.after = after
@@ -57,6 +57,12 @@ export default new Vuex.Store({
     },
     dismissAll ({ commit }) {
       commit('deleteAllPosts')
+    },
+    async nextPosts ({ commit, state}) {
+      const response = await getPosts(null, state.after)
+      commit('setPosts', response.data.children)
+      commit('setAfter', response.data.after)
+      commit('setBefore', response.data.before)
     }
   },
 });
